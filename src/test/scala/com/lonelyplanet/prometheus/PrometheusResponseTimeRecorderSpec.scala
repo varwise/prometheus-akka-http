@@ -9,7 +9,7 @@ import scala.concurrent.duration
 import scala.concurrent.duration.FiniteDuration
 import scala.util.Random
 
-class PrometheusLatencyRecorderSpec extends FlatSpec with Matchers with MockFactory {
+class PrometheusResponseTimeRecorderSpec extends FlatSpec with Matchers with MockFactory {
 
   "PrometheusLatencyRecorder" should "register a histogram and record request latencies" in {
     val registry = new CollectorRegistry()
@@ -22,7 +22,7 @@ class PrometheusLatencyRecorderSpec extends FlatSpec with Matchers with MockFact
     // our random value will end up in the second bucket
     val buckets = List((randomLatency - 1).toDouble, (randomLatency + 1).toDouble)
 
-    val recorder = new PrometheusLatencyRecorder(
+    val recorder = new PrometheusResponseTimeRecorder(
       randomMetricName,
       randomMetricHelp,
       buckets,
@@ -31,7 +31,7 @@ class PrometheusLatencyRecorderSpec extends FlatSpec with Matchers with MockFact
       duration.MILLISECONDS
     )
 
-    recorder.recordRequestLatency(randomEndpointName, FiniteDuration(randomLatency, duration.MILLISECONDS))
+    recorder.recordResponseTime(randomEndpointName, FiniteDuration(randomLatency, duration.MILLISECONDS))
 
     val first = getBucketValue(registry, randomMetricName, List(randomLabelName), List(randomEndpointName), buckets.head)
     val second = getBucketValue(registry, randomMetricName, List(randomLabelName), List(randomEndpointName), buckets.last)
