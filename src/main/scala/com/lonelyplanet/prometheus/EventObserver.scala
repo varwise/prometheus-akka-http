@@ -7,20 +7,20 @@ trait EventObserver {
 }
 
 /**
-  * Records observed events in a prometheus counter
-  *
-  * @param metricName the metric name
-  * @param metricHelp the metric help message
-  * @param eventLabelName the event label name that will be applied to the counter when recording events
-  * @param eventDetailsLabelName the event details label name that will be applied to the counter when recording events
-  * @param registry a prometheus registry to which the counter will be registered
-  */
+ * Records observed events in a prometheus counter
+ *
+ * @param metricName the metric name
+ * @param metricHelp the metric help message
+ * @param eventLabelName the event label name that will be applied to the counter when recording events
+ * @param eventDetailsLabelName the event details label name that will be applied to the counter when recording events
+ * @param registry a prometheus registry to which the counter will be registered
+ */
 class PrometheusEventObserver(
-  metricName: String,
-  metricHelp: String,
-  eventLabelName: String,
-  eventDetailsLabelName: String,
-  registry: CollectorRegistry
+    metricName: String,
+    metricHelp: String,
+    eventLabelName: String,
+    eventDetailsLabelName: String,
+    registry: CollectorRegistry
 ) extends EventObserver {
 
   val counter = buildCounter.register(registry)
