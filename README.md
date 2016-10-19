@@ -9,6 +9,14 @@
 Collection of utilities to allow exposing prometheus metrics from akka-http endpoint using the prometheus java client
 
     "com.lonelyplanet" %% "prometheus-akka-http" % "0.3.0"
+    
+You might need to also add our repository:
+
+```
+resolvers ++= Seq(
+  Resolver.bintrayRepo("lonelyplanet", "maven")
+)
+```
 
 ### Publishing
 
