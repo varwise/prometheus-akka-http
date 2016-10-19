@@ -6,7 +6,7 @@ name := "prometheus-akka-http"
 
 organization := "com.lonelyplanet"
 
-version := "0.3"
+version := "0.3.0"
 
 scalaVersion := "2.11.8"
 
