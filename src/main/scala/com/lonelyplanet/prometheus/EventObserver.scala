@@ -3,7 +3,7 @@ package com.lonelyplanet.prometheus
 import io.prometheus.client.{Counter, CollectorRegistry}
 
 trait EventObserver {
-  def observe(eventName: String, eventDetails: String)
+  def observe(eventName: String, eventDetails: String): Unit
 }
 
 /**
@@ -58,4 +58,8 @@ object PrometheusEventObserver {
       DefaultRegistry
     )
   }
+}
+
+class NoOpEventObserver extends EventObserver {
+  def observe(eventName: String, eventDetails: String): Unit = ()
 }

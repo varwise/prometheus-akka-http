@@ -64,3 +64,7 @@ object PrometheusResponseTimeRecorder {
     )
   }
 }
+
+class NoOpResponseTimeRecorder extends ResponseTimeRecorder {
+  def recordResponseTime(endpoint: String, responseTime: FiniteDuration): Unit = ()
+}
