@@ -6,7 +6,7 @@ name := "prometheus-akka-http"
 
 organization := "com.lonelyplanet"
 
-version := "0.3.1"
+version := "0.3.2-SNAPSHOT"
 
 scalaVersion := "2.11.8"
 
@@ -15,19 +15,19 @@ resolvers += "Sonatype release repository" at "https://oss.sonatype.org/content/
 scalacOptions := Seq("-unchecked", "-deprecation", "-encoding", "utf8")
 
 libraryDependencies ++= {
-  val akkaVersion = "2.4.11"
-  val scalaTestVersion      = "3.0.0-M15"
+  val akkaVersion = "2.4.16"
+  val akkaHttpVersion = "10.0.1"
+  val scalaTestVersion = "3.0.1"
 
   Seq(
     "com.typesafe.akka"    %% "akka-actor"                           % akkaVersion % "provided",
     "com.typesafe.akka"    %% "akka-stream"                          % akkaVersion % "provided",
-    "com.typesafe.akka"    %% "akka-http-core"                       % akkaVersion % "provided",
-    "com.typesafe.akka"    %% "akka-http-experimental"               % akkaVersion % "provided",
-    "com.typesafe.akka"    %% "akka-http-spray-json-experimental"    % akkaVersion % "provided",
-    "io.prometheus"        %  "simpleclient"                         % "0.0.15",
-    "io.prometheus"        %  "simpleclient_common"                  % "0.0.15",
-    "org.scalamock"        %% "scalamock-scalatest-support"          % "3.2.2" % "test",
-    "com.typesafe.akka"    %% "akka-http-testkit"                    % akkaVersion % "test",
+    "com.typesafe.akka"    %% "akka-http"                            % akkaHttpVersion % "provided",
+    "com.typesafe.akka"    %% "akka-http-spray-json"                 % akkaHttpVersion % "provided",
+    "io.prometheus"        %  "simpleclient"                         % "0.0.19",
+    "io.prometheus"        %  "simpleclient_common"                  % "0.0.19",
+    "org.scalamock"        %% "scalamock-scalatest-support"          % "3.4.2" % "test",
+    "com.typesafe.akka"    %% "akka-http-testkit"                    % akkaHttpVersion % "test",
     "org.scalatest"        %% "scalatest"                            % scalaTestVersion % "test"
   )
 }
