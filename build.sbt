@@ -25,8 +25,8 @@ libraryDependencies ++= {
     "com.typesafe.akka"    %% "akka-stream"                          % akkaVersion % "provided",
     "com.typesafe.akka"    %% "akka-http"                            % akkaHttpVersion % "provided",
     "com.typesafe.akka"    %% "akka-http-spray-json"                 % akkaHttpVersion % "provided",
-    "io.prometheus"        %  "simpleclient"                         % "0.0.19",
-    "io.prometheus"        %  "simpleclient_common"                  % "0.0.19",
+    "io.prometheus"        %  "simpleclient"                         % "0.0.26",
+    "io.prometheus"        %  "simpleclient_common"                  % "0.0.26",
     "org.scalamock"        %% "scalamock-scalatest-support"          % "3.4.2" % "test",
     "com.typesafe.akka"    %% "akka-http-testkit"                    % akkaHttpVersion % "test",
     "org.scalatest"        %% "scalatest"                            % scalaTestVersion % "test"
