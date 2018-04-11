@@ -16,17 +16,18 @@ resolvers += "Sonatype release repository" at "https://oss.sonatype.org/content/
 scalacOptions := Seq("-unchecked", "-deprecation", "-encoding", "utf8")
 
 libraryDependencies ++= {
-  val akkaVersion = "2.5.9"
-  val akkaHttpVersion = "10.0.11"
-  val scalaTestVersion = "3.0.4"
+  val simpleclientVersion = "0.3.0"
+  val akkaVersion         = "2.5.11"
+  val akkaHttpVersion     = "10.1.1"
+  val scalaTestVersion    = "3.0.4"
 
   Seq(
     "com.typesafe.akka"    %% "akka-actor"                           % akkaVersion % "provided",
     "com.typesafe.akka"    %% "akka-stream"                          % akkaVersion % "provided",
     "com.typesafe.akka"    %% "akka-http"                            % akkaHttpVersion % "provided",
     "com.typesafe.akka"    %% "akka-http-spray-json"                 % akkaHttpVersion % "provided",
-    "io.prometheus"        %  "simpleclient"                         % "0.1.0",
-    "io.prometheus"        %  "simpleclient_common"                  % "0.1.0",
+    "io.prometheus"        %  "simpleclient"                         % simpleclientVersion,
+    "io.prometheus"        %  "simpleclient_common"                  % simpleclientVersion,
     "org.scalamock"        %% "scalamock-scalatest-support"          % "3.6.0" % "test",
     "com.typesafe.akka"    %% "akka-http-testkit"                    % akkaHttpVersion % "test",
     "org.scalatest"        %% "scalatest"                            % scalaTestVersion % "test"
