@@ -1,6 +1,3 @@
-import scalariform.formatter.preferences._
-import com.typesafe.sbt.SbtScalariform
-import com.typesafe.sbt.SbtScalariform.ScalariformKeys
 
 name := "prometheus-akka-http"
 
@@ -36,15 +33,7 @@ libraryDependencies ++= {
 
 fork := true
 
-SbtScalariform.scalariformSettings
-
-ScalariformKeys.preferences := ScalariformKeys.preferences.value
-  .setPreference(AlignSingleLineCaseStatements, true)
-  .setPreference(DoubleIndentClassDeclaration, true)
-  .setPreference(SpacesAroundMultiImports, false)
-  .setPreference(CompactControlReadability, false)
-
-bintrayOrganization := Some("lonelyplanet")
+//bintrayOrganization := Some("lonelyplanet")
 
 licenses += ("MIT", url("http://opensource.org/licenses/MIT"))
 
@@ -54,7 +43,7 @@ val publishSettings =
   if (version.toString.endsWith("-SNAPSHOT"))
     Seq(
       publishTo := Some("Artifactory Realm" at "http://oss.jfrog.org/artifactory/oss-snapshot-local"),
-      bintrayReleaseOnPublish := false,
+      //bintrayReleaseOnPublish := false,
       credentials := List(Path.userHome / ".bintray" / ".artifactory").filter(_.exists).map(Credentials(_))
     )
   else
