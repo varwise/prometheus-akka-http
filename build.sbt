@@ -13,21 +13,22 @@ resolvers += "Sonatype release repository" at "https://oss.sonatype.org/content/
 scalacOptions := Seq("-unchecked", "-deprecation", "-encoding", "utf8")
 
 libraryDependencies ++= {
-  val simpleclientVersion = "0.3.0"
-  val akkaVersion         = "2.5.11"
-  val akkaHttpVersion     = "10.1.1"
-  val scalaTestVersion    = "3.0.4"
+  val simpleclientVersion = "0.6.0"
+  val akkaVersion         = "2.5.19"
+  val akkaHttpVersion     = "10.1.7"
+  val scalaTestVersion    = "3.0.5"
 
   Seq(
-    "com.typesafe.akka"    %% "akka-actor"                           % akkaVersion % "provided",
-    "com.typesafe.akka"    %% "akka-stream"                          % akkaVersion % "provided",
-    "com.typesafe.akka"    %% "akka-http"                            % akkaHttpVersion % "provided",
-    "com.typesafe.akka"    %% "akka-http-spray-json"                 % akkaHttpVersion % "provided",
+    "com.typesafe.akka"    %% "akka-actor"                           % akkaVersion % Provided,
+    "com.typesafe.akka"    %% "akka-stream"                          % akkaVersion % Provided,
+    "com.typesafe.akka"    %% "akka-http"                            % akkaHttpVersion % Provided,
+    "com.typesafe.akka"    %% "akka-http-spray-json"                 % akkaHttpVersion % Provided,
     "io.prometheus"        %  "simpleclient"                         % simpleclientVersion,
     "io.prometheus"        %  "simpleclient_common"                  % simpleclientVersion,
-    "org.scalamock"        %% "scalamock-scalatest-support"          % "3.6.0" % "test",
-    "com.typesafe.akka"    %% "akka-http-testkit"                    % akkaHttpVersion % "test",
-    "org.scalatest"        %% "scalatest"                            % scalaTestVersion % "test"
+    "org.scalamock"        %% "scalamock-scalatest-support"          % "3.6.0" % Test,
+    "com.typesafe.akka"    %% "akka-testkit"                         % akkaVersion % Test,
+    "com.typesafe.akka"    %% "akka-http-testkit"                    % akkaHttpVersion % Test,
+    "org.scalatest"        %% "scalatest"                            % scalaTestVersion % Test,
   )
 }
 
