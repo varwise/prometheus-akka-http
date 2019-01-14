@@ -33,6 +33,7 @@ libraryDependencies ++= {
 }
 
 fork := true
+scalafmtOnCompile := true
 
 bintrayOrganization := Some("lonelyplanet")
 

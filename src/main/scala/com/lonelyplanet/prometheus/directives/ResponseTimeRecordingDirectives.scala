@@ -38,7 +38,7 @@ trait ResponseTimeRecordingDirectives {
 
   private def record(endpoint: String, requestStartTime: Long): Unit = {
     val requestEndTime = System.nanoTime()
-    val total = new FiniteDuration(requestEndTime - requestStartTime, duration.NANOSECONDS)
+    val total          = new FiniteDuration(requestEndTime - requestStartTime, duration.NANOSECONDS)
 
     recorder.recordResponseTime(endpoint, total)
   }

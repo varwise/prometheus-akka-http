@@ -12,12 +12,12 @@ import scala.util.Random
 class PrometheusResponseTimeRecorderSpec extends FlatSpec with Matchers with MockFactory {
 
   "PrometheusLatencyRecorder" should "register a histogram and record request latencies" in {
-    val registry = new CollectorRegistry()
-    val randomMetricName = generateRandomString
-    val randomMetricHelp = generateRandomString
-    val randomLabelName = generateRandomString
+    val registry           = new CollectorRegistry()
+    val randomMetricName   = generateRandomString
+    val randomMetricHelp   = generateRandomString
+    val randomLabelName    = generateRandomString
     val randomEndpointName = generateRandomString
-    val randomLatency = Math.abs(Random.nextInt(10000))
+    val randomLatency      = Math.abs(Random.nextInt(10000))
 
     // our random value will end up in the second bucket
     val buckets = List((randomLatency - 1).toDouble, (randomLatency + 1).toDouble)
@@ -33,20 +33,30 @@ class PrometheusResponseTimeRecorderSpec extends FlatSpec with Matchers with Moc
 
     recorder.recordResponseTime(randomEndpointName, FiniteDuration(randomLatency, duration.MILLISECONDS))
 
-    val first = getBucketValue(registry, randomMetricName, List(randomLabelName), List(randomEndpointName), buckets.head)
-    val second = getBucketValue(registry, randomMetricName, List(randomLabelName), List(randomEndpointName), buckets.last)
-    val positiveInf = getBucketValue(registry, randomMetricName, List(randomLabelName), List(randomEndpointName), Double.PositiveInfinity)
+    val first =
+      getBucketValue(registry, randomMetricName, List(randomLabelName), List(randomEndpointName), buckets.head)
+    val second =
+      getBucketValue(registry, randomMetricName, List(randomLabelName), List(randomEndpointName), buckets.last)
+    val positiveInf = getBucketValue(registry,
+                                     randomMetricName,
+                                     List(randomLabelName),
+                                     List(randomEndpointName),
+                                     Double.PositiveInfinity)
 
     first shouldBe 0
     second shouldBe 1
     positiveInf shouldBe 1
   }
 
-  private def getBucketValue(registry: CollectorRegistry, metricName: String, labelNames: List[String], labelValues: List[String], bucket: Double) = {
+  private def getBucketValue(registry: CollectorRegistry,
+                             metricName: String,
+                             labelNames: List[String],
+                             labelValues: List[String],
+                             bucket: Double) = {
     val name = metricName + "_bucket"
 
     // 'le' should be the first label in the list
-    val allLabelNames = (Array("le") ++ labelNames).reverse
+    val allLabelNames  = (Array("le") ++ labelNames).reverse
     val allLabelValues = (Array(Collector.doubleToGoString(bucket)) ++ labelValues).reverse
     registry.getSampleValue(name, allLabelNames, allLabelValues).intValue()
   }

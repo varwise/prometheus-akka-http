@@ -7,13 +7,13 @@ import org.scalatest.{FlatSpec, Matchers}
 class PrometheusEventObserverSpec extends FlatSpec with Matchers {
 
   "PrometheusEventObserver" should "record observed events in a counter" in {
-    val registry = new CollectorRegistry()
-    val randomMetricName = generateRandomString
-    val randomMetricHelp = generateRandomString
-    val randomEventLabelName = generateRandomString
+    val registry                    = new CollectorRegistry()
+    val randomMetricName            = generateRandomString
+    val randomMetricHelp            = generateRandomString
+    val randomEventLabelName        = generateRandomString
     val randomEventDetailsLabelName = generateRandomString
 
-    val randomEventName = generateRandomString
+    val randomEventName    = generateRandomString
     val randomEventDetails = generateRandomString
 
     val eventObserver = new PrometheusEventObserver(

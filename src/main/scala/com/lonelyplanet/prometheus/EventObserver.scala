@@ -1,6 +1,6 @@
 package com.lonelyplanet.prometheus
 
-import io.prometheus.client.{Counter, CollectorRegistry}
+import io.prometheus.client.{CollectorRegistry, Counter}
 
 trait EventObserver {
   def observe(eventName: String, eventDetails: String): Unit
@@ -25,11 +25,12 @@ class PrometheusEventObserver(
 
   val counter = buildCounter.register(registry)
 
-  private def buildCounter = Counter
-    .build()
-    .name(metricName)
-    .help(metricHelp)
-    .labelNames(eventLabelName, eventDetailsLabelName)
+  private def buildCounter =
+    Counter
+      .build()
+      .name(metricName)
+      .help(metricHelp)
+      .labelNames(eventLabelName, eventDetailsLabelName)
 
   override def observe(eventName: String, eventDetails: String): Unit = {
     counter.labels(eventName, eventDetails).inc()
@@ -39,14 +40,15 @@ class PrometheusEventObserver(
 object PrometheusEventObserver {
   private val SuccessfulOperationMetricName = "operation_success"
   private val SuccessfulOperationMetricHelp = "The number of observed successful operations"
-  private val FailedOperationMetricName = "operation_failure"
-  private val FailedOperationMetricHelp = "The number of observed failed operations"
-  private val DefaultEventLabelName = "event"
-  private val DefaultEventDetailsLabelName = "details"
-  private val DefaultRegistry = CollectorRegistry.defaultRegistry
+  private val FailedOperationMetricName     = "operation_failure"
+  private val FailedOperationMetricHelp     = "The number of observed failed operations"
+  private val DefaultEventLabelName         = "event"
+  private val DefaultEventDetailsLabelName  = "details"
+  private val DefaultRegistry               = CollectorRegistry.defaultRegistry
 
   // Common event observers used in scala projects in Open Planet micro-services
-  lazy val SuccessfulOperations = withDefaultsFromMetricNameAndHelp(SuccessfulOperationMetricName, SuccessfulOperationMetricHelp)
+  lazy val SuccessfulOperations =
+    withDefaultsFromMetricNameAndHelp(SuccessfulOperationMetricName, SuccessfulOperationMetricHelp)
   lazy val FailedOperations = withDefaultsFromMetricNameAndHelp(FailedOperationMetricName, FailedOperationMetricHelp)
 
   private def withDefaultsFromMetricNameAndHelp(metricName: String, metricHelp: String) = {
