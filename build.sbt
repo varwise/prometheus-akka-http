@@ -1,3 +1,4 @@
+import scalariform.formatter.preferences._
 
 name := "prometheus-akka-http"
 
@@ -33,7 +34,14 @@ libraryDependencies ++= {
 }
 
 fork := true
-scalafmtOnCompile := true
+
+scalariformAutoformat := true
+
+scalariformPreferences := scalariformPreferences.value
+  .setPreference(AlignSingleLineCaseStatements, true)
+  .setPreference(DoubleIndentClassDeclaration, true)
+  .setPreference(SpacesAroundMultiImports, false)
+  .setPreference(CompactControlReadability, false)
 
 bintrayOrganization := Some("lonelyplanet")
 
