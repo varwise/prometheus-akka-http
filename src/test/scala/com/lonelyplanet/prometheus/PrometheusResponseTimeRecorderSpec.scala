@@ -28,8 +28,7 @@ class PrometheusResponseTimeRecorderSpec extends FlatSpec with Matchers with Moc
       buckets,
       randomLabelName,
       registry,
-      duration.MILLISECONDS
-    )
+      duration.MILLISECONDS)
 
     recorder.recordResponseTime(randomEndpointName, FiniteDuration(randomLatency, duration.MILLISECONDS))
 

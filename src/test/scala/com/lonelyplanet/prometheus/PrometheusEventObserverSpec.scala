@@ -1,10 +1,11 @@
 package com.lonelyplanet.prometheus
 
 import com.lonelyplanet.prometheus.Utils._
-import io.prometheus.client.{Collector, CollectorRegistry}
+import io.prometheus.client.CollectorRegistry
 import org.scalatest.{Matchers, FlatSpec}
 
 class PrometheusEventObserverSpec extends FlatSpec with Matchers {
+
   "PrometheusEventObserver" should "record observed events in a counter" in {
     val registry = new CollectorRegistry()
     val randomMetricName = generateRandomString
@@ -20,15 +21,13 @@ class PrometheusEventObserverSpec extends FlatSpec with Matchers {
       randomMetricHelp,
       randomEventLabelName,
       randomEventDetailsLabelName,
-      registry
-    )
+      registry)
 
     def getCounterValue = {
       registry.getSampleValue(
         randomMetricName,
         Array(randomEventLabelName, randomEventDetailsLabelName),
-        Array(randomEventName, randomEventDetails)
-      )
+        Array(randomEventName, randomEventDetails))
     }
 
     getCounterValue shouldBe null
