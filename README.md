@@ -26,7 +26,7 @@ Example project is available here: https://github.com/wlk/prometheus-akka-http-e
 
 We use `bintray-sbt` plugin for publishing artifacts, to publish newer version of the library run:
 ```
-sbt publish
+sbt +publish
 ```
 
 That's all what is required
