@@ -22,7 +22,6 @@ object MetricFamilySamplesEntity {
   def toPrometheusTextFormat(e: MetricFamilySamplesEntity): String = {
     val writer: Writer = new StringWriter()
     TextFormat.write004(writer, e.samples)
-
     writer.toString
   }
 
@@ -33,4 +32,3 @@ object MetricFamilySamplesEntity {
   }
 
 }
-

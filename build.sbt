@@ -34,26 +34,24 @@ libraryDependencies ++= {
 
 fork := true
 
-//bintrayOrganization := Some("lonelyplanet")
+bintrayOrganization := Some("lonelyplanet")
 
 licenses += ("MIT", url("http://opensource.org/licenses/MIT"))
-
-val doNotPublishSettings = Seq(publish := {})
 
 val publishSettings =
   if (version.toString.endsWith("-SNAPSHOT"))
     Seq(
       publishTo := Some("Artifactory Realm" at "http://oss.jfrog.org/artifactory/oss-snapshot-local"),
-      //bintrayReleaseOnPublish := false,
+      bintrayReleaseOnPublish := false,
       credentials := List(Path.userHome / ".bintray" / ".artifactory").filter(_.exists).map(Credentials(_))
     )
   else
     Seq(
-      organization := "com.lonelyplanet",
-      pomExtra := <scm>
-        <url>https://github.com/lonelyplanet/prometheus-akka-http</url>
-        <connection>https://github.com/lonelyplanet/prometheus-akka-http</connection>
-      </scm>
+      pomExtra :=
+        <scm>
+          <url>https://github.com/lonelyplanet/prometheus-akka-http</url>
+          <connection>https://github.com/lonelyplanet/prometheus-akka-http</connection>
+        </scm>
         <developers>
           <developer>
             <id>toddkazakov</id>
