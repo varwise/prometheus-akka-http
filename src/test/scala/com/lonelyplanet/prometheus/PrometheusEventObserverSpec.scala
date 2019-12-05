@@ -2,9 +2,10 @@ package com.lonelyplanet.prometheus
 
 import com.lonelyplanet.prometheus.Utils._
 import io.prometheus.client.CollectorRegistry
-import org.scalatest.{Matchers, FlatSpec}
+import org.scalatest.flatspec.AnyFlatSpec
+import org.scalatest.matchers.should.Matchers
 
-class PrometheusEventObserverSpec extends FlatSpec with Matchers {
+class PrometheusEventObserverSpec extends AnyFlatSpec with Matchers {
 
   "PrometheusEventObserver" should "record observed events in a counter" in {
     val registry = new CollectorRegistry()
