@@ -13,7 +13,7 @@ resolvers += "Sonatype release repository" at "https://oss.sonatype.org/content/
 scalacOptions := Seq("-unchecked", "-deprecation", "-encoding", "utf8")
 
 libraryDependencies ++= {
-  val simpleclientVersion = "0.6.0"
+  val simpleclientVersion = "0.8.0"
   val akkaVersion         = "2.5.19"
   val akkaHttpVersion     = "10.1.7"
   val scalaTestVersion    = "3.0.5"
