@@ -6,7 +6,7 @@ organization := "com.lonelyplanet"
 
 version := "0.4.0"
 
-crossScalaVersions := Seq("2.12.8", "2.11.12")
+crossScalaVersions := Seq("2.12.10", "2.11.12")
 
 resolvers += "Sonatype release repository" at "https://oss.sonatype.org/content/repositories/releases/"
 
