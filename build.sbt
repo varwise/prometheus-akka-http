@@ -6,7 +6,7 @@ organization := "com.lonelyplanet"
 
 version := "0.4.0"
 
-crossScalaVersions := Seq("2.12.10", "2.11.12")
+crossScalaVersions := Seq("2.12.10", "2.13.0")
 
 resolvers += "Sonatype release repository" at "https://oss.sonatype.org/content/repositories/releases/"
 
@@ -25,7 +25,7 @@ libraryDependencies ++= {
     "com.typesafe.akka"    %% "akka-http-spray-json"                 % akkaHttpVersion % Provided,
     "io.prometheus"        %  "simpleclient"                         % simpleclientVersion,
     "io.prometheus"        %  "simpleclient_common"                  % simpleclientVersion,
-    "org.scalamock"        %% "scalamock-scalatest-support"          % "3.6.0" % Test,
+    "org.scalamock"        %% "scalamock"                            % "4.3.0" % Test,
     "com.typesafe.akka"    %% "akka-testkit"                         % akkaVersion % Test,
     "com.typesafe.akka"    %% "akka-http-testkit"                    % akkaHttpVersion % Test,
     "org.scalatest"        %% "scalatest"                            % scalaTestVersion % Test,
@@ -38,7 +38,7 @@ scalariformAutoformat := true
 
 scalariformPreferences := scalariformPreferences.value
   .setPreference(AlignSingleLineCaseStatements, true)
-  .setPreference(DoubleIndentClassDeclaration, true)
+  .setPreference(DoubleIndentConstructorArguments, true)
   .setPreference(SpacesAroundMultiImports, false)
   .setPreference(CompactControlReadability, false)
 

@@ -21,12 +21,12 @@ trait ResponseTimeRecorder {
  * @param timeUnit the time unit in which observed values will be recorded.
  */
 class PrometheusResponseTimeRecorder(
-  metricName: String,
-  metricHelp: String,
-  buckets: List[Double],
-  endpointLabelName: String,
-  registry: CollectorRegistry,
-  timeUnit: TimeUnit) extends ResponseTimeRecorder {
+    metricName: String,
+    metricHelp: String,
+    buckets: List[Double],
+    endpointLabelName: String,
+    registry: CollectorRegistry,
+    timeUnit: TimeUnit) extends ResponseTimeRecorder {
 
   private val responseTimes = buildHistogram.register(registry)
 

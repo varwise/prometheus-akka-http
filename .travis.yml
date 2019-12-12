@@ -3,8 +3,8 @@ jdk:
   - openjdk8
   - openjdk11
 scala:
-  - 2.11.12
   - 2.12.10
-script: "sbt clean coverage test coverageReport"
+  - 2.13.0
+script: "sbt ++$TRAVIS_SCALA_VERSION clean coverage test coverageReport"
 after_success:
   - bash <(curl -s https://codecov.io/bash)
