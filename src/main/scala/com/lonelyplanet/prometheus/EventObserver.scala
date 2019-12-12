@@ -16,11 +16,11 @@ trait EventObserver {
  * @param registry a prometheus registry to which the counter will be registered
  */
 class PrometheusEventObserver(
-  metricName: String,
-  metricHelp: String,
-  eventLabelName: String,
-  eventDetailsLabelName: String,
-  registry: CollectorRegistry) extends EventObserver {
+    metricName: String,
+    metricHelp: String,
+    eventLabelName: String,
+    eventDetailsLabelName: String,
+    registry: CollectorRegistry) extends EventObserver {
 
   val counter = buildCounter.register(registry)
 
