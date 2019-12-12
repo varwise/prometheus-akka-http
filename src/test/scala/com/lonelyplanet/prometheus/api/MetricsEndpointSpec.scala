@@ -6,12 +6,13 @@ import akka.http.scaladsl.model.HttpCharsets
 import akka.http.scaladsl.testkit.ScalatestRouteTest
 import com.lonelyplanet.prometheus.Utils._
 import io.prometheus.client.exporter.common.TextFormat
-import io.prometheus.client.{Histogram, CollectorRegistry}
-import org.scalatest.{Matchers, FlatSpec}
+import io.prometheus.client.{CollectorRegistry, Histogram}
+import org.scalatest.flatspec.AnyFlatSpec
+import org.scalatest.matchers.should.Matchers
 
 import scala.util.Random
 
-class MetricsEndpointSpec extends FlatSpec with Matchers with ScalatestRouteTest {
+class MetricsEndpointSpec extends AnyFlatSpec with Matchers with ScalatestRouteTest {
 
   "Metrics endpoint" should "return the correct media type and charset" in {
     val api = createEndpoint(CollectorRegistry.defaultRegistry)

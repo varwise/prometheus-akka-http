@@ -2,14 +2,15 @@ package com.lonelyplanet.prometheus
 
 import io.prometheus.client.{Collector, CollectorRegistry}
 import org.scalamock.scalatest.MockFactory
-import org.scalatest.{FlatSpec, Matchers}
 import com.lonelyplanet.prometheus.Utils._
+import org.scalatest.flatspec.AnyFlatSpec
+import org.scalatest.matchers.should.Matchers
 
 import scala.concurrent.duration
 import scala.concurrent.duration.FiniteDuration
 import scala.util.Random
 
-class PrometheusResponseTimeRecorderSpec extends FlatSpec with Matchers with MockFactory {
+class PrometheusResponseTimeRecorderSpec extends AnyFlatSpec with Matchers with MockFactory {
 
   "PrometheusLatencyRecorder" should "register a histogram and record request latencies" in {
     val registry = new CollectorRegistry()

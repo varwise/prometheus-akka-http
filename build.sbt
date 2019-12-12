@@ -6,17 +6,17 @@ organization := "com.lonelyplanet"
 
 version := "0.4.0"
 
-crossScalaVersions := Seq("2.12.8", "2.11.12")
+crossScalaVersions := Seq("2.12.10", "2.11.12")
 
 resolvers += "Sonatype release repository" at "https://oss.sonatype.org/content/repositories/releases/"
 
 scalacOptions := Seq("-unchecked", "-deprecation", "-encoding", "utf8")
 
 libraryDependencies ++= {
-  val simpleclientVersion = "0.6.0"
-  val akkaVersion         = "2.5.19"
-  val akkaHttpVersion     = "10.1.7"
-  val scalaTestVersion    = "3.0.5"
+  val simpleclientVersion = "0.8.0"
+  val akkaVersion         = "2.6.0"
+  val akkaHttpVersion     = "10.1.11"
+  val scalaTestVersion    = "3.1.0"
 
   Seq(
     "com.typesafe.akka"    %% "akka-actor"                           % akkaVersion % Provided,
