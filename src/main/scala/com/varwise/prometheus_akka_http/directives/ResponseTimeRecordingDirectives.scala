@@ -1,8 +1,8 @@
-package com.lonelyplanet.prometheus.directives
+package com.varwise.prometheus_akka_http.directives
 
 import akka.http.scaladsl.server.ExceptionHandler
 import akka.http.scaladsl.server.directives.{BasicDirectives, ExecutionDirectives}
-import com.lonelyplanet.prometheus.ResponseTimeRecorder
+import com.varwise.prometheus_akka_http.ResponseTimeRecorder
 
 import scala.concurrent.duration
 import scala.concurrent.duration.FiniteDuration

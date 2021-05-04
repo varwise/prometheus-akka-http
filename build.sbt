@@ -2,13 +2,13 @@ import scalariform.formatter.preferences._
 
 name := "prometheus-akka-http"
 
-organization := "com.lonelyplanet"
+organization := "com.varwise"
+
+publishTo := sonatypePublishToBundle.value
 
 version := "0.5.0"
 
-crossScalaVersions := Seq("2.12.10", "2.13.0")
-
-resolvers += "Sonatype release repository" at "https://oss.sonatype.org/content/repositories/releases/"
+crossScalaVersions := Seq("2.12.10", "2.13.5")
 
 scalacOptions := Seq("-unchecked", "-deprecation", "-encoding", "utf8")
 
@@ -41,34 +41,3 @@ scalariformPreferences := scalariformPreferences.value
   .setPreference(DoubleIndentConstructorArguments, true)
   .setPreference(SpacesAroundMultiImports, false)
   .setPreference(CompactControlReadability, false)
-
-bintrayOrganization := Some("lonelyplanet")
-
-licenses += ("MIT", url("http://opensource.org/licenses/MIT"))
-
-val publishSettings =
-  if (version.toString.endsWith("-SNAPSHOT"))
-    Seq(
-      publishTo := Some("Artifactory Realm" at "http://oss.jfrog.org/artifactory/oss-snapshot-local"),
-      bintrayReleaseOnPublish := false,
-      credentials := List(Path.userHome / ".bintray" / ".artifactory").filter(_.exists).map(Credentials(_))
-    )
-  else
-    Seq(
-      pomExtra :=
-        <scm>
-          <url>https://github.com/lonelyplanet/prometheus-akka-http</url>
-          <connection>https://github.com/lonelyplanet/prometheus-akka-http</connection>
-        </scm>
-        <developers>
-          <developer>
-            <id>toddkazakov</id>
-            <name>Todd Kazakov</name>
-            <url>https://github.com/toddkazakov</url>
-          </developer>
-        </developers>,
-      publishArtifact in Test := false,
-      homepage := Some(url("https://github.com/lonelyplanet/prometheus-akka-http")),
-      publishMavenStyle := false,
-      resolvers += Resolver.url("lonelyplanet ivy resolver", url("http://dl.bintray.com/lonelyplanet/maven"))(Resolver.ivyStylePatterns)
-    )

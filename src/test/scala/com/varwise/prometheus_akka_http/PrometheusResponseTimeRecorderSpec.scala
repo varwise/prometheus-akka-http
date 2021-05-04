@@ -1,8 +1,8 @@
-package com.lonelyplanet.prometheus
+package com.varwise.prometheus_akka_http
 
 import io.prometheus.client.{Collector, CollectorRegistry}
 import org.scalamock.scalatest.MockFactory
-import com.lonelyplanet.prometheus.Utils._
+import Utils._
 import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.should.Matchers
 

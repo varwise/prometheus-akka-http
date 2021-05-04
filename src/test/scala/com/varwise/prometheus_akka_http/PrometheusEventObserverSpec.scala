@@ -1,6 +1,6 @@
-package com.lonelyplanet.prometheus
+package com.varwise.prometheus_akka_http
 
-import com.lonelyplanet.prometheus.Utils._
+import Utils._
 import io.prometheus.client.CollectorRegistry
 import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.should.Matchers
