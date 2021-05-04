@@ -1,10 +1,10 @@
-package com.varwise.prometheus_akka_http.api
+package com.varwise.akka.http.prometheus.api
 
 import java.io.StringWriter
 
 import akka.http.scaladsl.model.HttpCharsets
 import akka.http.scaladsl.testkit.ScalatestRouteTest
-import com.varwise.prometheus_akka_http.Utils._
+import com.varwise.akka.http.prometheus.Utils._
 import io.prometheus.client.exporter.common.TextFormat
 import io.prometheus.client.{CollectorRegistry, Histogram}
 import org.scalatest.flatspec.AnyFlatSpec

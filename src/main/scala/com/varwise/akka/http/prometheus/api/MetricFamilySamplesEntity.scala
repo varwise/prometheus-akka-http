@@ -1,4 +1,4 @@
-package com.varwise.prometheus_akka_http.api
+package com.varwise.akka.http.prometheus.api
 
 import java.io.{StringWriter, Writer}
 import java.util

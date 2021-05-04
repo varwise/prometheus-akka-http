@@ -1,4 +1,4 @@
-package com.varwise.prometheus_akka_http
+package com.varwise.akka.http.prometheus
 
 import io.prometheus.client.{Counter, CollectorRegistry}
 

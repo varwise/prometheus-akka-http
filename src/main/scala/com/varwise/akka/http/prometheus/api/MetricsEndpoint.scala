@@ -1,4 +1,4 @@
-package com.varwise.prometheus_akka_http.api
+package com.varwise.akka.http.prometheus.api
 
 import akka.http.scaladsl.server.Directives._
 import io.prometheus.client.CollectorRegistry

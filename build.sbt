@@ -6,9 +6,9 @@ organization := "com.varwise"
 
 publishTo := sonatypePublishToBundle.value
 
-version := "0.5.0"
+version := "0.5.1"
 
-crossScalaVersions := Seq("2.12.10", "2.13.5")
+scalaVersion := "2.13.5"
 
 scalacOptions := Seq("-unchecked", "-deprecation", "-encoding", "utf8")
 
