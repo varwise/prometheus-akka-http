@@ -1,6 +1,6 @@
 package com.varwise.akka.http.prometheus.directives
 
-import akka.http.scaladsl.server.ExceptionHandler
+import akka.http.scaladsl.server.{Directive, ExceptionHandler}
 import akka.http.scaladsl.server.directives.{BasicDirectives, ExecutionDirectives}
 import com.varwise.akka.http.prometheus.ResponseTimeRecorder
 
@@ -17,7 +17,7 @@ trait ResponseTimeRecordingDirectives {
     * @param endpoint the endpoint label value in the histogram
     * @return a new directive that records request latencies in a prometheus histogram
     */
-  def recordResponseTime(endpoint: String) = BasicDirectives.extractRequestContext.flatMap { ctx =>
+  def recordResponseTime(endpoint: String): Directive[Unit] = BasicDirectives.extractRequestContext.flatMap { _ =>
     val requestStartTime = System.nanoTime()
     BasicDirectives.mapResponse { resp =>
       record(endpoint, requestStartTime)

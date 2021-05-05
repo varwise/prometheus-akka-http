@@ -9,10 +9,11 @@ version := "0.5.2-SNAPSHOT"
 scalaVersion := "2.13.5"
 
 libraryDependencies ++= {
-  val simpleclientVersion = "0.8.0"
-  val akkaVersion = "2.6.0"
-  val akkaHttpVersion = "10.1.11"
-  val scalaTestVersion = "3.1.0"
+  val simpleclientVersion = "0.8.1"
+  val akkaVersion = "2.6.14"
+  val akkaHttpVersion = "10.2.4"
+  val scalaTestVersion = "3.1.4"
+  val scalamockVersion = "4.4.0"
 
   Seq(
     "com.typesafe.akka" %% "akka-actor"           % akkaVersion % Provided,
@@ -21,7 +22,7 @@ libraryDependencies ++= {
     "com.typesafe.akka" %% "akka-http-spray-json" % akkaHttpVersion % Provided,
     "io.prometheus"     % "simpleclient"          % simpleclientVersion,
     "io.prometheus"     % "simpleclient_common"   % simpleclientVersion,
-    "org.scalamock"     %% "scalamock"            % "4.3.0" % Test,
+    "org.scalamock"     %% "scalamock"            % scalamockVersion % Test,
     "com.typesafe.akka" %% "akka-testkit"         % akkaVersion % Test,
     "com.typesafe.akka" %% "akka-http-testkit"    % akkaHttpVersion % Test,
     "org.scalatest"     %% "scalatest"            % scalaTestVersion % Test

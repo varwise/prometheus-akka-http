@@ -48,7 +48,9 @@ object PrometheusEventObserver {
   // Common event observers used in scala projects in Open Planet micro-services
   lazy val SuccessfulOperations: PrometheusEventObserver =
     withDefaultsFromMetricNameAndHelp(SuccessfulOperationMetricName, SuccessfulOperationMetricHelp)
-  lazy val FailedOperations: PrometheusEventObserver = withDefaultsFromMetricNameAndHelp(FailedOperationMetricName, FailedOperationMetricHelp)
+
+  lazy val FailedOperations: PrometheusEventObserver =
+    withDefaultsFromMetricNameAndHelp(FailedOperationMetricName, FailedOperationMetricHelp)
 
   private def withDefaultsFromMetricNameAndHelp(metricName: String, metricHelp: String) =
     new PrometheusEventObserver(
