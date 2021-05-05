@@ -12,11 +12,11 @@ trait ResponseTimeRecordingDirectives {
   this: ResponseTimeRecorderProvider =>
 
   /**
-   * Directive that will record response time in a prometheus histogram
-   *
-   * @param endpoint the endpoint label value in the histogram
-   * @return a new directive that records request latencies in a prometheus histogram
-   */
+    * Directive that will record response time in a prometheus histogram
+    *
+    * @param endpoint the endpoint label value in the histogram
+    * @return a new directive that records request latencies in a prometheus histogram
+    */
   def recordResponseTime(endpoint: String) = BasicDirectives.extractRequestContext.flatMap { ctx =>
     val requestStartTime = System.nanoTime()
     BasicDirectives.mapResponse { resp =>
@@ -45,11 +45,11 @@ trait ResponseTimeRecordingDirectives {
 }
 
 object ResponseTimeRecordingDirectives {
-  def apply(r: ResponseTimeRecorder) = {
+
+  def apply(r: ResponseTimeRecorder) =
     new ResponseTimeRecordingDirectives with ResponseTimeRecorderProvider {
       override def recorder: ResponseTimeRecorder = r
     }
-  }
 }
 
 trait ResponseTimeRecorderProvider {

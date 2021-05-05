@@ -43,8 +43,7 @@ class MetricsEndpointSpec extends AnyFlatSpec with Matchers with ScalatestRouteT
   private val RandomTestName = generateRandomStringOfLength(16)
   private val RandomTestHelp = generateRandomStringOfLength(16)
 
-  private def createEndpoint(collectorRegistry: CollectorRegistry) = {
+  private def createEndpoint(collectorRegistry: CollectorRegistry) =
     new MetricsEndpoint(collectorRegistry)
-  }
 
 }
