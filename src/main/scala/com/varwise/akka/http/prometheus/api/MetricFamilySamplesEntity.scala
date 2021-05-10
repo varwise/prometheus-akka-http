@@ -3,7 +3,7 @@ package com.varwise.akka.http.prometheus.api
 import java.io.{StringWriter, Writer}
 import java.util
 
-import akka.http.scaladsl.marshalling.{ToEntityMarshaller, Marshaller}
+import akka.http.scaladsl.marshalling.{Marshaller, ToEntityMarshaller}
 import akka.http.scaladsl.model._
 import io.prometheus.client.Collector.MetricFamilySamples
 import io.prometheus.client.CollectorRegistry
@@ -13,11 +13,12 @@ case class MetricFamilySamplesEntity(samples: util.Enumeration[MetricFamilySampl
 
 object MetricFamilySamplesEntity {
   private val mediaTypeParams = Map("version" -> "0.0.4")
-  private val mediaType = MediaType.customWithFixedCharset("text", "plain", HttpCharsets.`UTF-8`, params = mediaTypeParams)
 
-  def fromRegistry(collectorRegistry: CollectorRegistry): MetricFamilySamplesEntity = {
+  private val mediaType =
+    MediaType.customWithFixedCharset("text", "plain", HttpCharsets.`UTF-8`, params = mediaTypeParams)
+
+  def fromRegistry(collectorRegistry: CollectorRegistry): MetricFamilySamplesEntity =
     MetricFamilySamplesEntity(collectorRegistry.metricFamilySamples())
-  }
 
   def toPrometheusTextFormat(e: MetricFamilySamplesEntity): String = {
     val writer: Writer = new StringWriter()
@@ -27,9 +28,7 @@ object MetricFamilySamplesEntity {
   }
 
   implicit val metricsFamilySamplesMarshaller: ToEntityMarshaller[MetricFamilySamplesEntity] = {
-    Marshaller.withFixedContentType(mediaType) { s =>
-      HttpEntity(mediaType, toPrometheusTextFormat(s))
-    }
+    Marshaller.withFixedContentType(mediaType)(s => HttpEntity(mediaType, toPrometheusTextFormat(s)))
   }
 
 }

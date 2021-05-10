@@ -29,20 +29,35 @@ class PrometheusResponseTimeRecorderSpec extends AnyFlatSpec with Matchers with 
       buckets,
       randomLabelName,
       registry,
-      duration.MILLISECONDS)
+      duration.MILLISECONDS
+    )
 
     recorder.recordResponseTime(randomEndpointName, FiniteDuration(randomLatency, duration.MILLISECONDS))
 
-    val first = getBucketValue(registry, randomMetricName, List(randomLabelName), List(randomEndpointName), buckets.head)
-    val second = getBucketValue(registry, randomMetricName, List(randomLabelName), List(randomEndpointName), buckets.last)
-    val positiveInf = getBucketValue(registry, randomMetricName, List(randomLabelName), List(randomEndpointName), Double.PositiveInfinity)
+    val first =
+      getBucketValue(registry, randomMetricName, List(randomLabelName), List(randomEndpointName), buckets.head)
+    val second =
+      getBucketValue(registry, randomMetricName, List(randomLabelName), List(randomEndpointName), buckets.last)
+    val positiveInf = getBucketValue(
+      registry,
+      randomMetricName,
+      List(randomLabelName),
+      List(randomEndpointName),
+      Double.PositiveInfinity
+    )
 
     first shouldBe 0
     second shouldBe 1
     positiveInf shouldBe 1
   }
 
-  private def getBucketValue(registry: CollectorRegistry, metricName: String, labelNames: List[String], labelValues: List[String], bucket: Double) = {
+  private def getBucketValue(
+      registry: CollectorRegistry,
+      metricName: String,
+      labelNames: List[String],
+      labelValues: List[String],
+      bucket: Double
+    ) = {
     val name = metricName + "_bucket"
 
     // 'le' should be the first label in the list

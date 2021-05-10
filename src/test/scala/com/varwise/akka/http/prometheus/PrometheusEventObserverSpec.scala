@@ -22,14 +22,15 @@ class PrometheusEventObserverSpec extends AnyFlatSpec with Matchers {
       randomMetricHelp,
       randomEventLabelName,
       randomEventDetailsLabelName,
-      registry)
+      registry
+    )
 
-    def getCounterValue = {
+    def getCounterValue =
       registry.getSampleValue(
         randomMetricName,
         Array(randomEventLabelName, randomEventDetailsLabelName),
-        Array(randomEventName, randomEventDetails))
-    }
+        Array(randomEventName, randomEventDetails)
+      )
 
     getCounterValue shouldBe null
 
