@@ -4,7 +4,7 @@ organization := "com.varwise"
 
 publishTo := sonatypePublishToBundle.value
 
-version := "0.5.2-SNAPSHOT"
+version := "0.6.0"
 
 val scala2Version = "2.13.6"
 val scala3Version = "3.0.2"
