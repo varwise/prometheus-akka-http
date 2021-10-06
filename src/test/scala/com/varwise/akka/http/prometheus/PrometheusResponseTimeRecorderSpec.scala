@@ -11,6 +11,21 @@ import scala.util.Random
 
 class PrometheusResponseTimeRecorderSpec extends AnyFlatSpec with Matchers {
 
+  private def getBucketValue(
+      registry: CollectorRegistry,
+      metricName: String,
+      labelNames: List[String],
+      labelValues: List[String],
+      bucket: Double
+    ): Int = {
+    val name = metricName + "_bucket"
+
+    // 'le' should be the first label in the list
+    val allLabelNames = (Array("le") ++ labelNames).reverse
+    val allLabelValues = (Array(Collector.doubleToGoString(bucket)) ++ labelValues).reverse
+    registry.getSampleValue(name, allLabelNames, allLabelValues).intValue()
+  }
+
   "PrometheusLatencyRecorder" should "register a histogram and record request latencies" in {
     val registry = new CollectorRegistry()
     val randomMetricName = generateRandomString
@@ -49,20 +64,4 @@ class PrometheusResponseTimeRecorderSpec extends AnyFlatSpec with Matchers {
     second shouldBe 1
     positiveInf shouldBe 1
   }
-
-  private def getBucketValue(
-      registry: CollectorRegistry,
-      metricName: String,
-      labelNames: List[String],
-      labelValues: List[String],
-      bucket: Double
-    ): Int = {
-    val name = metricName + "_bucket"
-
-    // 'le' should be the first label in the list
-    val allLabelNames = (Array("le") ++ labelNames).reverse
-    val allLabelValues = (Array(Collector.doubleToGoString(bucket)) ++ labelValues).reverse
-    registry.getSampleValue(name, allLabelNames, allLabelValues).intValue()
-  }
-
 }
