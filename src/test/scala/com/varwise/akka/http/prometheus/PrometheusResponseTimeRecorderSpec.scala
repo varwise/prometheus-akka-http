@@ -2,7 +2,6 @@ package com.varwise.akka.http.prometheus
 
 import com.varwise.akka.http.prometheus.Utils._
 import io.prometheus.client.{Collector, CollectorRegistry}
-import org.scalamock.scalatest.MockFactory
 import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.should.Matchers
 
@@ -10,7 +9,7 @@ import scala.concurrent.duration
 import scala.concurrent.duration.FiniteDuration
 import scala.util.Random
 
-class PrometheusResponseTimeRecorderSpec extends AnyFlatSpec with Matchers with MockFactory {
+class PrometheusResponseTimeRecorderSpec extends AnyFlatSpec with Matchers {
 
   "PrometheusLatencyRecorder" should "register a histogram and record request latencies" in {
     val registry = new CollectorRegistry()
