@@ -11,3 +11,9 @@ Example project is available here: https://github.com/wlk/prometheus-akka-http-e
 ### Publishing
 
 Artifacts are published to Maven central using the [sbt-sonatype](https://github.com/xerial/sbt-sonatype) plugin
+
+Building howto:
+```
+sbt
+; + publishSigned; sonatypeBundleRelease
+```
