@@ -1,6 +1,6 @@
 package com.varwise.akka.http.prometheus
 
-import Utils._
+import com.varwise.akka.http.prometheus.Utils._
 import io.prometheus.client.CollectorRegistry
 import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.should.Matchers
@@ -25,9 +25,9 @@ class PrometheusEventObserverSpec extends AnyFlatSpec with Matchers {
       registry
     )
 
-    def getCounterValue =
+    def getCounterValue: java.lang.Double =
       registry.getSampleValue(
-        randomMetricName,
+        randomMetricName + "_total",
         Array(randomEventLabelName, randomEventDetailsLabelName),
         Array(randomEventName, randomEventDetails)
       )

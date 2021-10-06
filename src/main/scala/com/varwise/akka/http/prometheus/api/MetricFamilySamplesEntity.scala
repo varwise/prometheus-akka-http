@@ -1,13 +1,13 @@
 package com.varwise.akka.http.prometheus.api
 
-import java.io.{StringWriter, Writer}
-import java.util
-
 import akka.http.scaladsl.marshalling.{Marshaller, ToEntityMarshaller}
 import akka.http.scaladsl.model._
 import io.prometheus.client.Collector.MetricFamilySamples
 import io.prometheus.client.CollectorRegistry
 import io.prometheus.client.exporter.common.TextFormat
+
+import java.io.{StringWriter, Writer}
+import java.util
 
 case class MetricFamilySamplesEntity(samples: util.Enumeration[MetricFamilySamples])
 

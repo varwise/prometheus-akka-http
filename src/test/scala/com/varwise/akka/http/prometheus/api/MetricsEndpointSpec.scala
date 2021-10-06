@@ -1,7 +1,5 @@
 package com.varwise.akka.http.prometheus.api
 
-import java.io.StringWriter
-
 import akka.http.scaladsl.model.HttpCharsets
 import akka.http.scaladsl.testkit.ScalatestRouteTest
 import com.varwise.akka.http.prometheus.Utils._
@@ -10,9 +8,13 @@ import io.prometheus.client.{CollectorRegistry, Histogram}
 import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.should.Matchers
 
+import java.io.StringWriter
 import scala.util.Random
 
 class MetricsEndpointSpec extends AnyFlatSpec with Matchers with ScalatestRouteTest {
+
+  private def createEndpoint(collectorRegistry: CollectorRegistry) =
+    new MetricsEndpoint(collectorRegistry)
 
   "Metrics endpoint" should "return the correct media type and charset" in {
     val api = createEndpoint(CollectorRegistry.defaultRegistry)
@@ -27,6 +29,8 @@ class MetricsEndpointSpec extends AnyFlatSpec with Matchers with ScalatestRouteT
   it should "return serialized metrics in the prometheus text format" in {
     val registry = new CollectorRegistry()
     val api = createEndpoint(registry)
+    val RandomTestName = generateRandomStringOfLength(16)
+    val RandomTestHelp = generateRandomStringOfLength(16)
     val hist = Histogram.build().name(RandomTestName).help(RandomTestHelp).linearBuckets(0, 1, 10).register(registry)
 
     hist.observe(Math.abs(Random.nextDouble()))
@@ -39,11 +43,4 @@ class MetricsEndpointSpec extends AnyFlatSpec with Matchers with ScalatestRouteT
       resp shouldBe writer.toString
     }
   }
-
-  private val RandomTestName = generateRandomStringOfLength(16)
-  private val RandomTestHelp = generateRandomStringOfLength(16)
-
-  private def createEndpoint(collectorRegistry: CollectorRegistry) =
-    new MetricsEndpoint(collectorRegistry)
-
 }

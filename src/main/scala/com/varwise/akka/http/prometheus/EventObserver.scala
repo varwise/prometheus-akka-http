@@ -25,7 +25,7 @@ class PrometheusEventObserver(
 
   val counter: Counter = buildCounter.register(registry)
 
-  private def buildCounter =
+  private def buildCounter: Counter.Builder =
     Counter
       .build()
       .name(metricName)

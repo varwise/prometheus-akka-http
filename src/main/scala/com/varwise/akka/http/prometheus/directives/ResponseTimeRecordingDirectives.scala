@@ -1,7 +1,7 @@
 package com.varwise.akka.http.prometheus.directives
 
-import akka.http.scaladsl.server.{Directive, ExceptionHandler}
 import akka.http.scaladsl.server.directives.{BasicDirectives, ExecutionDirectives}
+import akka.http.scaladsl.server.{Directive, ExceptionHandler}
 import com.varwise.akka.http.prometheus.ResponseTimeRecorder
 
 import scala.concurrent.duration
@@ -46,7 +46,7 @@ trait ResponseTimeRecordingDirectives {
 
 object ResponseTimeRecordingDirectives {
 
-  def apply(r: ResponseTimeRecorder) =
+  def apply(r: ResponseTimeRecorder): ResponseTimeRecordingDirectives =
     new ResponseTimeRecordingDirectives with ResponseTimeRecorderProvider {
       override def recorder: ResponseTimeRecorder = r
     }

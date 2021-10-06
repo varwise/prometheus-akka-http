@@ -1,8 +1,7 @@
 package com.varwise.akka.http.prometheus
 
+import com.varwise.akka.http.prometheus.Utils._
 import io.prometheus.client.{Collector, CollectorRegistry}
-import org.scalamock.scalatest.MockFactory
-import Utils._
 import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.should.Matchers
 
@@ -10,7 +9,22 @@ import scala.concurrent.duration
 import scala.concurrent.duration.FiniteDuration
 import scala.util.Random
 
-class PrometheusResponseTimeRecorderSpec extends AnyFlatSpec with Matchers with MockFactory {
+class PrometheusResponseTimeRecorderSpec extends AnyFlatSpec with Matchers {
+
+  private def getBucketValue(
+      registry: CollectorRegistry,
+      metricName: String,
+      labelNames: List[String],
+      labelValues: List[String],
+      bucket: Double
+    ): Int = {
+    val name = metricName + "_bucket"
+
+    // 'le' should be the first label in the list
+    val allLabelNames = (Array("le") ++ labelNames).reverse
+    val allLabelValues = (Array(Collector.doubleToGoString(bucket)) ++ labelValues).reverse
+    registry.getSampleValue(name, allLabelNames, allLabelValues).intValue()
+  }
 
   "PrometheusLatencyRecorder" should "register a histogram and record request latencies" in {
     val registry = new CollectorRegistry()
@@ -50,20 +64,4 @@ class PrometheusResponseTimeRecorderSpec extends AnyFlatSpec with Matchers with 
     second shouldBe 1
     positiveInf shouldBe 1
   }
-
-  private def getBucketValue(
-      registry: CollectorRegistry,
-      metricName: String,
-      labelNames: List[String],
-      labelValues: List[String],
-      bucket: Double
-    ) = {
-    val name = metricName + "_bucket"
-
-    // 'le' should be the first label in the list
-    val allLabelNames = (Array("le") ++ labelNames).reverse
-    val allLabelValues = (Array(Collector.doubleToGoString(bucket)) ++ labelValues).reverse
-    registry.getSampleValue(name, allLabelNames, allLabelValues).intValue()
-  }
-
 }

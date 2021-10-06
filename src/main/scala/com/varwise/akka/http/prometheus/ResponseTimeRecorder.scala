@@ -34,7 +34,7 @@ class PrometheusResponseTimeRecorder(
   override def recordResponseTime(endpoint: String, responseTime: FiniteDuration): Unit =
     responseTimes.labels(endpoint).observe(responseTime.toUnit(timeUnit))
 
-  private def buildHistogram =
+  private def buildHistogram: Histogram.Builder =
     Histogram
       .build()
       .name(metricName)
