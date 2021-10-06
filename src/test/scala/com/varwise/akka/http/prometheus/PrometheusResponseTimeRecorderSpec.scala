@@ -1,8 +1,8 @@
 package com.varwise.akka.http.prometheus
 
+import com.varwise.akka.http.prometheus.Utils._
 import io.prometheus.client.{Collector, CollectorRegistry}
 import org.scalamock.scalatest.MockFactory
-import Utils._
 import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.should.Matchers
 
@@ -57,7 +57,7 @@ class PrometheusResponseTimeRecorderSpec extends AnyFlatSpec with Matchers with 
       labelNames: List[String],
       labelValues: List[String],
       bucket: Double
-    ) = {
+    ): Int = {
     val name = metricName + "_bucket"
 
     // 'le' should be the first label in the list

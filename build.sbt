@@ -6,14 +6,14 @@ publishTo := sonatypePublishToBundle.value
 
 version := "0.5.2-SNAPSHOT"
 
-scalaVersion := "2.13.5"
+scalaVersion := "2.13.6"
 
 libraryDependencies ++= {
-  val simpleclientVersion = "0.8.1"
-  val akkaVersion = "2.6.14"
-  val akkaHttpVersion = "10.2.4"
-  val scalaTestVersion = "3.1.4"
-  val scalamockVersion = "4.4.0"
+  val simpleclientVersion = "0.12.0"
+  val akkaVersion = "2.6.16"
+  val akkaHttpVersion = "10.2.6"
+  val scalaTestVersion = "3.2.10"
+  val scalamockVersion = "5.1.0"
 
   Seq(
     "com.typesafe.akka" %% "akka-actor"           % akkaVersion % Provided,
@@ -32,6 +32,6 @@ libraryDependencies ++= {
 lazy val `root` = (project in file("."))
   .settings(
     addCommandAlias("testAll", ";test"),
-    addCommandAlias("formatAll", ";scalafmt;test:scalafmt;scalafmtSbt"),
-    addCommandAlias("compileAll", ";compile;test:compile")
+    addCommandAlias("formatAll", ";scalafmt;Test/scalafmt;scalafmtSbt"),
+    addCommandAlias("compileAll", ";compile;Test/compile")
   )

@@ -1,7 +1,5 @@
 package com.varwise.akka.http.prometheus.api
 
-import java.io.StringWriter
-
 import akka.http.scaladsl.model.HttpCharsets
 import akka.http.scaladsl.testkit.ScalatestRouteTest
 import com.varwise.akka.http.prometheus.Utils._
@@ -10,6 +8,7 @@ import io.prometheus.client.{CollectorRegistry, Histogram}
 import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.should.Matchers
 
+import java.io.StringWriter
 import scala.util.Random
 
 class MetricsEndpointSpec extends AnyFlatSpec with Matchers with ScalatestRouteTest {
